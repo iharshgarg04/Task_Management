@@ -181,3 +181,29 @@ exports.changeStatus = async (req, res) => {
     console.log("Error while changing ");
   }
 };
+exports.fetchMyTasks = async(req,res)=>{
+    try{
+        const {userId} = req.body;
+        if(!userId){
+            return res.status(400).json({
+                success:false,
+                message:"Error while fetching my tasks",
+            })
+        }
+        const response = await Task.find({userId:userId});
+        if(!response){
+            return res.status(400).json({
+                success:false,
+                message:"Error while fetching Tasks",
+            })
+        }
+        return res.status(200).json({
+            success:true,
+            message:"Fetched successfully",
+            response,
+        })
+    }catch(error){
+        console.log(error);
+        console.log("Error fetching your tasks");
+    }
+}
