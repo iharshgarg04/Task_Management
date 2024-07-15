@@ -61,3 +61,47 @@ exports.editTask = async(req,res)=>{
         console.log("error while editing task");
     }
 }
+
+exports.deleteTask = async(req,res)=>{
+    try{
+        const response = await Task.findByIdAndDelete(req.params.id);
+        if(!response){
+            return res.status(400).json({
+                success:false,
+                message:"Task can't be deleted"
+            })
+        }
+
+        return res.status(200).json({
+            success:true,
+            message:"Task deleted successfully",
+        })
+    }catch(error){
+        console.log(error);
+        console.log("Error while deleting the task");
+    }
+}
+
+exports.changeStatus = async(req,res)=>{
+    try{
+        const {taskId,status} = req.body;
+        if(!status || !taskId){
+            return res.status(400).json({
+                success:false,
+                message:"Status is not provided",
+            })
+        }
+        const response = await Task.findByIdAndUpdate(taskId,{status:status},{new:true});
+        if(!response){
+            return res.status(400).send("Error while changing the task");
+        }
+        return res.status(200).json({
+            success:true,
+            message:"status Changed successfully",
+            response
+        })
+    }catch(error){
+        console.log(error);
+        console.log("Error while changing ")
+    }
+}
