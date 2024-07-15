@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
+const userRoute = require('./routes/userRoute')
 
 const app = express();
 app.use(express.json());
@@ -11,6 +12,8 @@ app.use(cors({
 dotenv.config();
 
 const PORT = process.env.PORT || 4000;
+
+app.use('/user',userRoute);
 
 const connectDb = async()=>{
     try{
