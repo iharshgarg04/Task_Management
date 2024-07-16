@@ -1,0 +1,10 @@
+
+.navbar-header{
+    display: flex;
+height: 92px;
+width: 100%;
+justify-content: center;
+align-items: center;
+font-size: 30px;
+background: gainsboro;
+}
