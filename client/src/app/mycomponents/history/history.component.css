@@ -1,0 +1,21 @@
+.history-para{
+    color: white;
+    text-decoration: underline;
+}
+.History-para-cont{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background-color: #606060;
+    height: 51px;
+    border-radius: 11px;
+    padding: 0px 9px;
+}
+.History-container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.hist-head{
+    text-align: center;
+}

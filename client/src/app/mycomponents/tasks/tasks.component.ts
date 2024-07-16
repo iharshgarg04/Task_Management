@@ -28,7 +28,7 @@ export class TasksComponent {
   fetchData(userId:string):void{
     this.http.get(`http://localhost:4000/task/fetchMyTask/${userId}`).subscribe((res:any)=>{
       this.data = res.response;
-      console.log(this.data,"Hii")
+      // console.log(this.data,"Hii")
     },(error)=>{
       console.log(error.error.message);
     })

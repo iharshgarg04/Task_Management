@@ -1,2 +1,6 @@
-
-    <p>history works!</p>
+<h2 class="hist-head">History</h2>
+<div *ngIf="data.length > 0" class="History-container">
+    <div *ngFor="let task of data" class="History-para-cont">
+        <p class="history-para">{{task.change}}</p>
+    </div>
+</div>
