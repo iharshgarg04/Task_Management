@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const userRoute = require('./routes/userRoute')
 const taskRoute = require('./routes/taskRoute')
+const historyRoute = require('./routes/historyRoute')
 
 const app = express();
 app.use(express.json());
@@ -16,6 +17,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use('/user',userRoute);
 app.use('/task',taskRoute);
+app.use('/history',historyRoute);
 
 const connectDb = async()=>{
     try{

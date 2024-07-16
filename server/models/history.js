@@ -13,6 +13,10 @@ const historySchema = mongoose.Schema({
     updatedAt:{
         type:Date,
         default : Date.now,
+    },
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User',
     }
 })
 

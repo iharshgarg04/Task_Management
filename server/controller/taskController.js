@@ -37,6 +37,7 @@ exports.addTask = async (req, res) => {
     // console.log(taskId._id);
     const createLog = await History.create({
       taskId: taskId._id,
+      userId:userId,
       change: `New Task is Created with title ${title}`,
     });
     if (!createLog) {
@@ -58,7 +59,7 @@ exports.addTask = async (req, res) => {
 
 exports.editTask = async (req, res) => {
   try {
-    const { title, description, dueDate, priority } = req.body;
+    const { title, description, dueDate, priority,userId} = req.body;
     if (!title || !description || !dueDate || !priority) {
       return res.status(400).json({
         success: false,
@@ -102,7 +103,7 @@ exports.editTask = async (req, res) => {
 
     if(changes.length>0){
         const changeDescription = changes.join(', ');
-        const createLog = await History.create({taskId:req.params.id, change:changeDescription});
+        const createLog = await History.create({taskId:req.params.id,change:changeDescription,userId:userId});
         if(!createLog) return res.status(400).json({
             success:false,
             message:"Error while editing the task",
@@ -121,6 +122,7 @@ exports.editTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
   try {
+    const{userId} = req.body;
     const response = await Task.findById(req.params.id);
     if (!response) {
       return res.status(400).json({
@@ -132,6 +134,7 @@ exports.deleteTask = async (req, res) => {
     const createLog = await History.create({
       taskId: req.params.id,
       change: `Task with task title ${response.title} is deleted`,
+      userId:userId
     });
     if (!createLog || !taskdelete) {
       return res.status(400).json({
@@ -151,7 +154,7 @@ exports.deleteTask = async (req, res) => {
 
 exports.changeStatus = async (req, res) => {
   try {
-    const { taskId, status } = req.body;
+    const { taskId, status ,userId} = req.body;
     if (!status || !taskId) {
       return res.status(400).json({
         success: false,
@@ -167,6 +170,7 @@ exports.changeStatus = async (req, res) => {
     const createLog = await History.create({
       taskId: taskId,
       change: `Status of Task ${task.title} changed to ${status}`,
+      userId:userId
     });
     if (!response || !createLog) {
       return res.status(400).send("Error while changing the task");
@@ -183,7 +187,8 @@ exports.changeStatus = async (req, res) => {
 };
 exports.fetchMyTasks = async(req,res)=>{
     try{
-        const {userId} = req.body;
+        const userId = req.params.id;
+        console.log(userId)
         if(!userId){
             return res.status(400).json({
                 success:false,

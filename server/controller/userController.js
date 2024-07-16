@@ -17,7 +17,12 @@ exports.loginController = async(req,res)=>{
                 message:"Login successfull",
                 user:response,
             })
-        }    
+        }else{
+            return res.status(400).json({
+                success:false,
+                message:"User not Found"
+            })
+        }  
     }catch(error){
         console.error(error);
         console.error("Error while logging in");
