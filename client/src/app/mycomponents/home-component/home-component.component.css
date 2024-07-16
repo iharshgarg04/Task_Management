@@ -1,0 +1,31 @@
+.home-container{
+    display: flex;
+    gap: 20px;
+    height: 90%;
+}
+.tasks-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    flex: 2;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 9px;
+    margin-top: 13px;
+}
+.history-container{
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 9px;
+    margin-top: 13px;
+}
+.addTask-container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    border-radius: 9px;
+    margin-top: 13px;
+    flex: 1;
+}

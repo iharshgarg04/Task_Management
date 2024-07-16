@@ -1,11 +1,11 @@
 <form  class="auth-login-box">
     <div class="auth-login">
         <h1 class="text-login">Login</h1>
-        <input type="text" placeholder="Enter your Name" class="input-field">
-        <input type="text" placeholder="Enter your Email" class="input-field">
-        <button class="login-button">Log in</button>
+        <input type="text" placeholder="Enter your Name" class="input-field" [(ngModel)] = "loginObj.username" name="username">
+        <input type="password" placeholder="Enter your Password" class="input-field" [(ngModel)] = "loginObj.password" name="password">
+        <button class="login-button" (click)="onLogin()">Log in</button>
         <div class="login-para">
-            <p>don't have an account with us? <a class="login-anchor">Sign up</a> </p>
+            <p>don't have an account with us? <a (click)="navigateToSignup()" class="login-anchor">Sign up</a> </p>
         </div>
     </div>
 </form>

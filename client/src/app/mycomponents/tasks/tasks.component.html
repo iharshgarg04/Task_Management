@@ -1,0 +1,14 @@
+<!-- src/app/tasks/tasks.component.html -->
+<h2>My Tasks</h2>
+<div *ngIf="data.length > 0" class="task-container">
+    <div *ngFor="let task of data" class="task-title">
+        {{task.title}}
+        <div class="icons-task">
+            <mat-icon aria-hidden="false" class="icons" aria-label="Example home icon" fontIcon="edit"></mat-icon>
+            <mat-icon aria-hidden="false" class="icons" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+        </div>
+    </div>
+</div>
+<div *ngIf="data.length === 0">
+  <p>No tasks found.</p>
+</div>
