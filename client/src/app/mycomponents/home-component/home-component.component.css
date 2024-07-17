@@ -8,25 +8,27 @@
     align-items: center;
     flex-direction: column;
     flex: 2;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
     border-radius: 9px;
-    margin-top: 13px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    overflow-y: auto;
+    /* margin-top: 13px; */
 }
 .history-container{
     padding: 0px 10px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
     border-radius: 9px;
-    margin-top: 13px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+    /* margin-top: 13px; */
 }
 .addTask-container{
     display: flex;
     align-items: center;
     flex-direction: column;
-    box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
     border-radius: 9px;
-    margin-top: 13px;
+    /* margin-top: 13px; */
     flex: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
+
 }

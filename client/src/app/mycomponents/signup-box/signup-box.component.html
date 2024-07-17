@@ -1,12 +1,35 @@
-<form  class="auth-login-box">
-    <div class="auth-login">
-        <h1 class="text-login">Signup</h1>
-        <input type="text" placeholder="Enter your Name" class="input-field" name="username" [(ngModel)]="signupObj.username">
-        <input type="text" placeholder="Enter your Email" class="input-field" name="email" [(ngModel)] ="signupObj.email">
-        <input type="password" placeholder="Enter your Password" class="input-field" name="password" [(ngModel)] = "signupObj.password">
-        <button class="login-button" (click) = "onSignUp()">Sign up</button>
-        <div class="login-para">
-            <p>Already have an account with us? <a  (click)="navigateToLogin()" class="login-anchor">Log in</a> </p>
-        </div>
+<form class="auth-login-box">
+  <div class="auth-login">
+    <h1 class="text-login">Signup</h1>
+    <div class="input-main-cont">
+      <input
+        type="text"
+        placeholder="Enter your Name"
+        class="input-field"
+        name="username"
+        [(ngModel)]="signupObj.username"
+      />
+      <input
+        type="text"
+        placeholder="Enter your Email"
+        class="input-field"
+        name="email"
+        [(ngModel)]="signupObj.email"
+      />
+      <input
+        type="password"
+        placeholder="Enter your Password"
+        class="input-field"
+        name="password"
+        [(ngModel)]="signupObj.password"
+      />
+      <button class="login-button" (click)="onSignUp()">Sign up</button>
     </div>
+    <div class="login-para">
+      <p>
+        Already have an account with us?
+        <a (click)="navigateToLogin()" class="login-anchor">Log in</a>
+      </p>
+    </div>
+  </div>
 </form>

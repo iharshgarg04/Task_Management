@@ -1,0 +1,61 @@
+.input-field{
+    margin: 10px 0px;
+    font-size: 19px;
+    border: none;
+    padding: 16px 14px;
+    width: 95%;
+    border-radius: 10px;
+}
+
+.auth-login{
+    gap: 20px;
+    justify-content: center;
+    display: flex;
+    height: 480px;
+    width: 450px;
+    flex-direction: column;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-radius: 20px;
+    padding: 20px 20px;
+}
+.auth-login-box{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 90vh;
+    align-items: center;
+}
+.text-login{
+    text-align: center;
+}
+.login-button{
+    font-size: 18px;
+    padding: 10px 10px;
+}
+.login-para{
+    display: flex;
+    justify-content: center;
+}
+.login-anchor{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.dialog-container{
+    display: flex;
+    flex-direction: column;
+    width: 29vw;
+    height: 42vh;
+    background-color: #EEEEEE !important;
+}
+.dialog-input{
+    width: 100%;
+}
+.dialog-para{
+    font-size: 21px;
+    text-align: center;
+}
+.dialog-action{
+    background-color: #EEEEEE;
+}

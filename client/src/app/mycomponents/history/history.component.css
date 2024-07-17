@@ -1,21 +1,45 @@
 .history-para{
-    color: white;
+    font-size: 17px;
+    font-weight: 500;
+    color: #222831;
     text-decoration: underline;
 }
 .History-para-cont{
     display: flex;
     flex-direction: column;
     gap: 5px;
-    background-color: #606060;
-    height: 51px;
+    background-color: #EEEEEE;
+    height: fit-content;
     border-radius: 11px;
-    padding: 0px 9px;
+    padding: 8px 9px;
+    justify-content: center;
 }
 .History-container{
+    padding-right: 10px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 .hist-head{
     text-align: center;
+}
+
+.History-container::-webkit-scrollbar {
+    width: 5px;
+}
+
+.History-container::-webkit-scrollbar-track {
+    background: #31363F; 
+}
+
+.History-container::-webkit-scrollbar-thumb {
+    background-color: #EEEEEE; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Rounded corners */
+    border: 2px solid #EEEEEE; /* Border around the thumb */
+}
+
+.History-container::-webkit-scrollbar-thumb:hover {
+    background-color: #999; /* Color of the scrollbar thumb on hover */
 }

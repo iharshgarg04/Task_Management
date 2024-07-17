@@ -1,15 +1,11 @@
 .task-container{
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
+    width: 95% !important;
 }
 
 .task-title{
     font-size: 1.1rem;
     border-radius: 10px;
-    background-color: gainsboro;
+    background-color: #EEEEEE;
     DISPLAY: flex;
     width: 90%;
     height: 70px;
@@ -24,7 +20,20 @@
 .icons{
     padding: 10px 10px;
     border-radius: 50%;
+    cursor: pointer;
 }
 .icons:hover{
-    background-color: white;
+    background-color: #31363F !important;
+    color: white;
+}
+.task-icon{
+    display: flex;
+    justify-content: flex-end;
+    /* gap: 20px; */
+    align-items: center;
+    gap: 10px;
+}
+.p-button{
+    background-color: #31363F !important;
+    color: #31363F !important;
 }

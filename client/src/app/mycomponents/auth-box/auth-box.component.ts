@@ -4,12 +4,13 @@ import { FormsModule } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-auth-box',
   standalone: true,
-  imports: [MatFormFieldModule,FormsModule],
+  imports: [MatFormFieldModule,FormsModule, InputTextModule, FloatLabelModule],
   templateUrl: './auth-box.component.html',
   styleUrl: './auth-box.component.css'
 })

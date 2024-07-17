@@ -1,14 +1,22 @@
 <!-- src/app/tasks/tasks.component.html -->
-<h2>My Tasks</h2>
-<div *ngIf="data.length > 0" class="task-container">
-    <div *ngFor="let task of data" class="task-title">
-        {{task.title}}
-        <div class="icons-task">
-            <mat-icon aria-hidden="false" class="icons" aria-label="Example home icon" fontIcon="edit"></mat-icon>
-            <mat-icon aria-hidden="false" class="icons" aria-label="Example home icon" fontIcon="delete"></mat-icon>
+<h3></h3>
+<p-accordion [activeIndex]="0" *ngIf="data.length > 0" class="task-container">
+    <p-accordionTab header={{task.title}} *ngFor="let task of data">
+        <div class="task-icon">
+            <p-dropdown 
+            [options]="status" 
+            [(ngModel)]="selectedStatus" 
+            optionLabel="name"
+            placeholder="Change Status" />
+            <p-button label="Change" (click)="handleStatus(task._id)" />
+            <i class="pi pi-pencil icons" style="font-size: 1.2rem" (click)="openDialog(task._id)" ></i>
+            <i class="pi pi-trash icons" style="font-size: 1.2rem" (click)="handleDelete(task._id)" ></i>
         </div>
-    </div>
-</div>
-<div *ngIf="data.length === 0">
-  <p>No tasks found.</p>
-</div>
+        <p>
+            Description : {{task.description}}
+        </p>
+        <p>priority: {{task.priority}}</p>
+        <p>DueDate: {{task.dueDate}}</p>
+        <p>Status: {{task.status}}</p>
+    </p-accordionTab>
+</p-accordion>

@@ -38,7 +38,7 @@ exports.addTask = async (req, res) => {
     const createLog = await History.create({
       taskId: taskId._id,
       userId:userId,
-      change: `New Task is Created with title ${title}`,
+      change: `New Task is Created with title '${title}'`,
     });
     if (!createLog) {
       return res.status(400).json({
@@ -108,6 +108,7 @@ exports.editTask = async (req, res) => {
             success:false,
             message:"Error while editing the task",
         })
+        task.save();
     }
 
     return res.status(200).json({
@@ -122,7 +123,9 @@ exports.editTask = async (req, res) => {
 
 exports.deleteTask = async (req, res) => {
   try {
-    const{userId} = req.body;
+    const userId = req.query.userId;
+    console.log(req.query);
+    console.log(userId,"Hii params");
     const response = await Task.findById(req.params.id);
     if (!response) {
       return res.status(400).json({
@@ -133,8 +136,8 @@ exports.deleteTask = async (req, res) => {
     const taskdelete = await Task.findByIdAndDelete(req.params.id);
     const createLog = await History.create({
       taskId: req.params.id,
-      change: `Task with task title ${response.title} is deleted`,
-      userId:userId
+      userId:userId,
+      change: `Task with task title '${response.title}' is deleted`,
     });
     if (!createLog || !taskdelete) {
       return res.status(400).json({
@@ -163,13 +166,13 @@ exports.changeStatus = async (req, res) => {
     }
     const response = await Task.findByIdAndUpdate(
       taskId,
-      { status: status },
+      { status: status.name },
       { new: true }
     );
     const task = await Task.findById(taskId);
     const createLog = await History.create({
       taskId: taskId,
-      change: `Status of Task ${task.title} changed to ${status}`,
+      change: `Status of Task '${task.title}' changed to '${status}'`,
       userId:userId
     });
     if (!response || !createLog) {

@@ -1,0 +1,27 @@
+<mat-dialog-content class="dialog-container">
+    <p class="dialog-para">{{taskTitle}} Task</p>
+    <div class="dialog-input">
+      <div>
+        <input matInput placeholder="Enter Title" class="input-field" name="title" [(ngModel)]="dialogObj.title" />
+      </div>
+      <div>
+        <textarea name="description" placeholder="Enter Description" class="input-field" [(ngModel)]="dialogObj.description" ></textarea>
+      </div>
+      <div>
+        <input type="date" name="dueDate" class="input-field" [(ngModel)]="dialogObj.dueDate">
+      </div>
+      <div >
+        <select name="priority" id="" placeholder="select priority" class="input-field" [(ngModel)]="dialogObj.priority">
+          <option value="" disabled selected>Select priority</option>
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+        </select>
+      </div>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="dialog-action">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button cdkFocusInitial (click)="handleSubmit()">Ok</button>
+  </mat-dialog-actions>
+  
