@@ -20,7 +20,7 @@
     gap: 20px;
     justify-content: center;
     display: flex;
-    height: 70vh;
+    height: 83vh;
     width: 32vw;
     flex-direction: column;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
@@ -38,6 +38,7 @@
 .text-login{
     /* text-decoration: underline; */
     text-align: center;
+    font-size: 3.3rem;
 }
 .login-button{
     font-size: 18px;
@@ -53,7 +54,7 @@
     background-color: #222831;
 }
 .login-para{
-    font-size: 17px;
+    font-size: 16px;
     padding: 8px 0px;
     display: flex;
     justify-content: center;
@@ -65,4 +66,30 @@
 }
 .login-anchor:hover{
     color: #222831;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .auth-login{
+        width: 70vw;
+        height: 80vh;
+    }
+    .text-login{
+        font-size: 40px;
+    }
+    .login-para{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .auth-login{
+        width: 95vw;
+        height: 80vh;
+    }
+    .text-login{
+        font-size: 40px;
+    }
+    .login-para{
+        font-size: 12px;
+    }
 }

@@ -72,3 +72,27 @@
     justify-content: center;
     align-items: center;
 }
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .auth-login{
+        width: 70vw;
+    }
+    .text-login{
+        font-size: 40px;
+    }
+    .login-para{
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 700px) {
+    .auth-login{
+        width: 95vw;
+    }
+    .text-login{
+        font-size: 40px;
+    }
+    .login-para{
+        font-size: 12px;
+    }
+}
