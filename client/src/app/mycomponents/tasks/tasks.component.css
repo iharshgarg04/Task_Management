@@ -30,10 +30,75 @@
     display: flex;
     justify-content: flex-end;
     /* gap: 20px; */
+    flex-wrap: wrap;
     align-items: center;
     gap: 10px;
 }
 .p-button{
     background-color: #31363F !important;
     color: #31363F !important;
+}
+
+.tablet-button{
+    display: none;
+}
+.button{
+    color: white !important;
+    width: -webkit-fill-available;
+}
+
+.filter-div{
+    border: 1px solid #EEEEEE;
+    display: flex;
+    margin: 10px;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 10px 10px;
+}
+.filter-cont{
+    cursor: pointer;
+    display: flex;
+    width: 90%;
+    justify-content: flex-end;
+}
+.filter-para{
+    color: #31363F;
+    background: #EEEEEE;
+    padding: 5px 31px;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+    .tablet-button{
+        display: block;
+    }
+    .icons{
+        font-size: 1rem !important; 
+        padding: 7px 7px;
+    }
+    .p-dropdown{
+        display: flex;
+        width: 18vw !important;
+        height: 6vh !important;
+        justify-content: center;
+        align-items: center;
+    }
+    .task-icon{
+        margin-bottom: 8px;
+    }
+}
+@media (max-width: 700px) {
+    .tablet-button{
+        display: block;
+    }
+    .icons{
+        font-size: 1rem !important; 
+        padding: 7px 7px;
+    }
+    .task-icon{
+        margin-bottom: 8px;
+    }
+    .filter-cont{
+        display: flex;
+    }
+
 }

@@ -1,22 +1,59 @@
 <!-- src/app/tasks/tasks.component.html -->
-<h3></h3>
-<p-accordion [activeIndex]="0" *ngIf="data.length > 0" class="task-container">
-    <p-accordionTab header={{task.title}} *ngFor="let task of data">
-        <div class="task-icon">
-            <p-dropdown 
-            [options]="status" 
-            [(ngModel)]="selectedStatus" 
-            optionLabel="name"
-            placeholder="Change Status" />
-            <p-button label="Change" (click)="handleStatus(task._id)" />
-            <i class="pi pi-pencil icons" style="font-size: 1.2rem" (click)="openDialog(task._id)" ></i>
-            <i class="pi pi-trash icons" style="font-size: 1.2rem" (click)="handleDelete(task._id)" ></i>
-        </div>
-        <p>
-            Description : {{task.description}}
-        </p>
-        <p>priority: {{task.priority}}</p>
-        <p>DueDate: {{task.dueDate}}</p>
-        <p>Status: {{task.status}}</p>
-    </p-accordionTab>
+<app-add-task  class="tablet-button"></app-add-task>
+<div class="filter-div" [ngStyle]="{'display': show ? 'flex' : 'none'}" >
+  <p-dropdown
+    [options]="statuses"
+    [(ngModel)]="selectedStatusFi"
+    placeholder="Select Status"
+    optionLabel="name"
+  ></p-dropdown>
+  <p-dropdown
+    [options]="priorities"
+    [(ngModel)]="selectedPriority"
+    placeholder="Select Priority"
+    optionLabel="name"
+  ></p-dropdown>
+  <p-dropdown
+    [options]="tasks"
+    [(ngModel)]="selectedTask"
+    placeholder="Select Task"
+    optionLabel="name"
+  ></p-dropdown>
+  <button
+  class="button"
+    pButton
+    type="button"
+    label="Filter"
+    (click)="applyFilter()"
+  ></button>
+</div>
+<div class="filter-cont" >
+    <p class="filter-para" (click)="toggle()">Filter</p>
+</div>
+<p-accordion [activeIndex]="0" *ngIf="filterData.length > 0" class="task-container">
+  <p-accordionTab header="{{ task.title }}" *ngFor="let task of filterData">
+    <div class="task-icon">
+      <p-dropdown
+        [options]="status"
+        [(ngModel)]="selectedStatus"
+        optionLabel="name"
+        placeholder="Change Status"
+      />
+      <p-button label="Change" (click)="handleStatus(task._id)" />
+      <i
+        class="pi pi-pencil icons"
+        style="font-size: 1.2rem"
+        (click)="openDialog(task._id)"
+      ></i>
+      <i
+        class="pi pi-trash icons"
+        style="font-size: 1.2rem"
+        (click)="handleDelete(task._id)"
+      ></i>
+    </div>
+    <p>Description : {{ task.description }}</p>
+    <p>priority: {{ task.priority }}</p>
+    <p>DueDate: {{ task.dueDate }}</p>
+    <p>Status: {{ task.status }}</p>
+  </p-accordionTab>
 </p-accordion>
