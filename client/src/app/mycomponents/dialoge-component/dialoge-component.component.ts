@@ -58,7 +58,7 @@ export class DialogeComponentComponent {
     this.dialogObj.userId = parsed._id;
     this.isLoading =true;
     this.http
-      .post(`https://task-management-server-4pwx36ty8-solo4.vercel.app/task/addTask`, this.dialogObj)
+      .post(`https://task-management-server-omega-six.vercel.app/task/addTask`, this.dialogObj)
       .subscribe(
         (res: any) => {
           this.toastr.success("Task Added successfully");
@@ -78,7 +78,7 @@ export class DialogeComponentComponent {
     this.dialogObj.userId = parsed._id;
     console.log(this.taskId);
     this.isLoading = true;
-    this.http.put(`https://task-management-server-4pwx36ty8-solo4.vercel.app/task/editTask/${this.taskId}`,this.dialogObj).subscribe((res:any)=>{
+    this.http.put(`https://task-management-server-omega-six.vercel.app/task/editTask/${this.taskId}`,this.dialogObj).subscribe((res:any)=>{
       console.log("Task updated successfully");
       this.toastr.success("Task updated successfully");
       this.taskEventService.taskChanged();
