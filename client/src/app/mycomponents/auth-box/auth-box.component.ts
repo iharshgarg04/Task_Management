@@ -27,7 +27,7 @@ export class AuthBoxComponent {
   }
   onLogin(){
     this.isLoading = true;
-    this.http.post('http://localhost:4000/user/login',this.loginObj).subscribe((res:any)=>{
+    this.http.post(`https://task-management-server-omega-six.vercel.app/user/login`,this.loginObj).subscribe((res:any)=>{
       if(res.success===true){
         this.toastr.success("Login successfully");
         this.router.navigate(['/home']);
@@ -38,7 +38,8 @@ export class AuthBoxComponent {
     },(error)=>{
       // console.log(error)
       this.isLoading =false;
-      this.toastr.error(error.error.message);
+
+      this.toastr.error("Login Failed");
     })
   }
 }

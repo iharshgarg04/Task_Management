@@ -42,7 +42,7 @@ export class HistoryComponent {
 
   fetchHistory(userId:string){
     this.isLoading = true;
-    this.http.get(`http://localhost:4000/history/fetchHistory/${userId}`).subscribe((res:any)=>{
+    this.http.get(`https://task-management-server-4pwx36ty8-solo4.vercel.app/fetchHistory/${userId}`).subscribe((res:any)=>{
       this.data = res.response;
       this.isLoading = false;
       // this.toastr.success("History Fetched successfully");

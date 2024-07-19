@@ -99,7 +99,7 @@ export class TasksComponent {
   }
   fetchData(userId:string):void{
     this.isLoading =true;
-    this.http.get(`http://localhost:4000/task/fetchMyTask/${userId}`).subscribe((res:any)=>{
+    this.http.get(`https://task-management-server-4pwx36ty8-solo4.vercel.app/task/fetchMyTask/${userId}`).subscribe((res:any)=>{
       this.data= res.response;
       this.toastr.success("Tasks Fetched Successfully")
       this.filterData = res.response;
@@ -134,7 +134,7 @@ export class TasksComponent {
       const parsed = JSON.parse(userId);
       console.log(parsed);
       this.isLoading = true;
-      this.http.delete(`http://localhost:4000/task/deleteTask/${taskId}?userId=${parsed._id}`,).subscribe((res:any)=>{
+      this.http.delete(`https://task-management-server-4pwx36ty8-solo4.vercel.app/task/deleteTask/${taskId}?userId=${parsed._id}`,).subscribe((res:any)=>{
         this.fetchData(parsed._id);
         console.log(res);
         this.isLoading =false;
@@ -160,7 +160,7 @@ export class TasksComponent {
       }
       this.isLoading =true;
       console.log(payload)
-      this.http.put("http://localhost:4000/task/updateStatus",payload).subscribe((res:any)=>{
+      this.http.put("https://task-management-server-4pwx36ty8-solo4.vercel.app/task/updateStatus",payload).subscribe((res:any)=>{
         this.fetchData(parsed._id);
         console.log("Status changed successfully");
         this.isLoading =false;

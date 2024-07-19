@@ -20,7 +20,7 @@ export class SignupBoxComponent {
     this.router.navigate(['/']);
   }
   onSignUp(){
-    this.http.post('http://localhost:4000/user/signup',this.signupObj).subscribe((res:any)=>{
+    this.http.post('https://task-management-server-4pwx36ty8-solo4.vercel.app/user/signup',this.signupObj).subscribe((res:any)=>{
       if(res.success===true){
         this.toastr.success("Signup successfully");
         this.router.navigate(['/home'])
