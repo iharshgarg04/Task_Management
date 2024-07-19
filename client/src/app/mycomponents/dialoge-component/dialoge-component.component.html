@@ -1,6 +1,9 @@
 <mat-dialog-content class="dialog-container">
     <p class="dialog-para">{{taskTitle}} Task</p>
-    <div class="dialog-input">
+    <div class="card flex justify-content-center spinner" *ngIf="isLoading">
+      <p-progressSpinner ariaLabel="loading" />
+    </div>
+    <div class="dialog-input" *ngIf="!isLoading">
       <div>
         <input matInput placeholder="Enter Title" class="input-field" name="title" [(ngModel)]="dialogObj.title" />
       </div>

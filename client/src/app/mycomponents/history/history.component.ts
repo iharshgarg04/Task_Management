@@ -3,18 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { TaskEventService } from '../../services/task-event.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ProgressSpinnerModule],
   templateUrl: './history.component.html',
   styleUrl: './history.component.css'
 })
 export class HistoryComponent {
   private taskChangedSubscription: Subscription = new Subscription();
   data:any;
-  constructor(private http:HttpClient,private taskEventService: TaskEventService){}
+  isLoading:boolean =false;
+  constructor(private http:HttpClient,private taskEventService: TaskEventService,private toastr: ToastrService){}
 
   ngOnInit(){
     const userId = localStorage.getItem('userData');
@@ -38,10 +41,14 @@ export class HistoryComponent {
   }
 
   fetchHistory(userId:string){
+    this.isLoading = true;
     this.http.get(`http://localhost:4000/history/fetchHistory/${userId}`).subscribe((res:any)=>{
       this.data = res.response;
+      this.isLoading = false;
+      // this.toastr.success("History Fetched successfully");
       console.log(this.data);
     },(error)=>{
+      this.isLoading = false;
       console.log(error.message)
     })
   }

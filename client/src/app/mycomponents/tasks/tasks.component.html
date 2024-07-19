@@ -1,6 +1,11 @@
 <!-- src/app/tasks/tasks.component.html -->
-<app-add-task  class="tablet-button"></app-add-task>
-<div class="filter-div" [ngStyle]="{'display': show ? 'flex' : 'none'}" >
+<app-add-task class="tablet-button"></app-add-task>
+<div class="card flex justify-content-center">
+  <div class="card flex justify-content-center" *ngIf="isLoading">
+    <p-progressSpinner ariaLabel="loading" />
+  </div>
+</div>
+<div class="filter-div" [ngStyle]="{ display: show ? 'flex' : 'none' }">
   <p-dropdown
     [options]="statuses"
     [(ngModel)]="selectedStatusFi"
@@ -20,17 +25,21 @@
     optionLabel="name"
   ></p-dropdown>
   <button
-  class="button"
+    class="button"
     pButton
     type="button"
     label="Filter"
     (click)="applyFilter()"
   ></button>
 </div>
-<div class="filter-cont" >
-    <p class="filter-para" (click)="toggle()">Filter</p>
+<div class="filter-cont">
+  <p class="filter-para" (click)="toggle()">Filter</p>
 </div>
-<p-accordion [activeIndex]="0" *ngIf="filterData.length > 0" class="task-container">
+<p-accordion
+  [activeIndex]="0"
+  *ngIf="filterData.length > 0"
+  class="task-container"
+>
   <p-accordionTab header="{{ task.title }}" *ngFor="let task of filterData">
     <div class="task-icon">
       <p-dropdown

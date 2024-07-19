@@ -5,6 +5,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TaskEventService } from '../../services/task-event.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dialoge-component',
@@ -18,12 +21,14 @@ import { TaskEventService } from '../../services/task-event.service';
     MatDialogContent,
     MatDialogActions,
     MatDialogClose,
+    ProgressSpinnerModule,
+    CommonModule
   ],
   templateUrl: './dialoge-component.component.html',
   styleUrl: './dialoge-component.component.css',
 })
 export class DialogeComponentComponent {
-  
+  isLoading:boolean = false;
   readonly dialogRef = inject(MatDialogRef<DialogeComponentComponent>);
   dialogObj: Dialog;
   taskTitle : string;
@@ -31,7 +36,7 @@ export class DialogeComponentComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,private taskEventService: TaskEventService) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,private taskEventService: TaskEventService,private toastr: ToastrService) {
     this.taskTitle = data.taskTitle;
     this.dialogObj = new Dialog();
     this.taskId = data.taskId;
@@ -51,15 +56,19 @@ export class DialogeComponentComponent {
   handleAddSubmit(userId:string){
     const parsed = JSON.parse(userId);
     this.dialogObj.userId = parsed._id;
+    this.isLoading =true;
     this.http
       .post(`http://localhost:4000/task/addTask`, this.dialogObj)
       .subscribe(
         (res: any) => {
+          this.toastr.success("Task Added successfully");
           console.log(res);
+          this.isLoading = false;
           this.taskEventService.taskChanged();
           this.dialogRef.close();
         },
         (error) => {
+          this.isLoading = false;
           console.log(error);
         }
       );
@@ -68,12 +77,16 @@ export class DialogeComponentComponent {
     const parsed = JSON.parse(userId);
     this.dialogObj.userId = parsed._id;
     console.log(this.taskId);
+    this.isLoading = true;
     this.http.put(`http://localhost:4000/task/editTask/${this.taskId}`,this.dialogObj).subscribe((res:any)=>{
       console.log("Task updated successfully");
+      this.toastr.success("Task updated successfully");
       this.taskEventService.taskChanged();
       this.dialogRef.close();
+      this.isLoading = false;
     },(error)=>{
       console.log(error);
+      this.isLoading = false;
       console.log("Error while Editing the task");
     })
   }

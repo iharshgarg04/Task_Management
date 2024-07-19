@@ -1,4 +1,7 @@
 <h3 class="hist-head"></h3>
+<div class="card flex justify-content-center spinner" *ngIf="isLoading">
+    <p-progressSpinner ariaLabel="loading" />
+</div>
 <div *ngIf="data.length > 0" class="History-container">
     <div *ngFor="let task of data" class="History-para-cont">
         <p class="history-para">{{task.change}}</p>

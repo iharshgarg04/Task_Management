@@ -60,6 +60,12 @@
 .dialog-action{
     background-color: #EEEEEE;
 }
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
 
 @media (min-width: 601px) and (max-width: 1024px) {
     .dialog-container{

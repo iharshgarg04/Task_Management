@@ -67,3 +67,8 @@
 .login-anchor:hover{
     color: #222831;
 }
+.spinner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

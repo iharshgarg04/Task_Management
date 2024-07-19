@@ -13,6 +13,8 @@ import { ButtonModule } from 'primeng/button'
 import { AddTaskComponent } from '../add-task/add-task.component';
 import { Subscription } from 'rxjs';
 import { TaskEventService } from '../../services/task-event.service';
+import { ToastrService } from 'ngx-toastr';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 interface City {
   name: string;
@@ -26,7 +28,7 @@ interface FilterOption {
 @Component({
   selector: 'app-tasks',
   standalone: true,
-  imports: [CommonModule,MatIconModule,AccordionModule,DropdownModule,FormsModule,ButtonModule,AddTaskComponent,TreeSelectModule,],
+  imports: [CommonModule,MatIconModule,AccordionModule,DropdownModule,FormsModule,ButtonModule,AddTaskComponent,TreeSelectModule,ProgressSpinnerModule],
   templateUrl: './tasks.component.html',
   styleUrl: './tasks.component.css',
   viewProviders: [provideIcons({ }),],
@@ -37,6 +39,7 @@ export class TasksComponent {
   taskTitle = 'Edit'
   status: City[] | undefined;
   selectedStatus: City | undefined;
+  isLoading:boolean =false;
   private taskChangedSubscription: Subscription = new Subscription();
 
   statuses: FilterOption[] = [
@@ -63,7 +66,7 @@ export class TasksComponent {
 
   show = false;
   
-  constructor(private http:HttpClient,private taskEventService: TaskEventService){}
+  constructor(private http:HttpClient,private taskEventService: TaskEventService,private toastr: ToastrService){}
 
   toggle(){
     this.show = !this.show;
@@ -95,10 +98,14 @@ export class TasksComponent {
 
   }
   fetchData(userId:string):void{
+    this.isLoading =true;
     this.http.get(`http://localhost:4000/task/fetchMyTask/${userId}`).subscribe((res:any)=>{
       this.data= res.response;
+      this.toastr.success("Tasks Fetched Successfully")
       this.filterData = res.response;
+      this.isLoading =false;
     },(error)=>{
+      this.isLoading=false;
       console.log(error.error.message);
     })
   }
@@ -126,10 +133,14 @@ export class TasksComponent {
     if(userId){
       const parsed = JSON.parse(userId);
       console.log(parsed);
+      this.isLoading = true;
       this.http.delete(`http://localhost:4000/task/deleteTask/${taskId}?userId=${parsed._id}`,).subscribe((res:any)=>{
         this.fetchData(parsed._id);
         console.log(res);
+        this.isLoading =false;
+        this.toastr.success("Task Deleted Successfully")
       },(error)=>{
+        this.isLoading =false;
         console.log(error);
         console.log("Task Deleted Successfully");
       })
@@ -147,12 +158,16 @@ export class TasksComponent {
         userId:parsed._id,
         status:this.selectedStatus,
       }
+      this.isLoading =true;
       console.log(payload)
       this.http.put("http://localhost:4000/task/updateStatus",payload).subscribe((res:any)=>{
         this.fetchData(parsed._id);
         console.log("Status changed successfully");
+        this.isLoading =false;
+        this.toastr.success("Status updated Successfully")
         console.log(res);
       },error=>{
+        this.isLoading=false;
         console.log(error);
       })
     }

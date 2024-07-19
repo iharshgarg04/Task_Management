@@ -6,32 +6,38 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-auth-box',
   standalone: true,
-  imports: [MatFormFieldModule,FormsModule, InputTextModule, FloatLabelModule],
+  imports: [MatFormFieldModule,FormsModule, InputTextModule, FloatLabelModule,ProgressSpinnerModule,CommonModule],
   templateUrl: './auth-box.component.html',
   styleUrl: './auth-box.component.css'
 })
 export class AuthBoxComponent {
+  isLoading:boolean =false;
   loginObj : Login;
-  constructor(private toastr: ToastrService,private http:HttpClient,private router : Router) { 
+  constructor(private toastr: ToastrService,private http:HttpClient,private router : Router,) { 
     this.loginObj = new Login();
   }
   navigateToSignup(){
     this.router.navigate(['/signup']);
   }
   onLogin(){
+    this.isLoading = true;
     this.http.post('http://localhost:4000/user/login',this.loginObj).subscribe((res:any)=>{
       if(res.success===true){
         this.toastr.success("Login successfully");
         this.router.navigate(['/home']);
+        this.isLoading=false;
         localStorage.setItem('userData', JSON.stringify(res.user));
       }
       // console.log(res);
     },(error)=>{
       // console.log(error)
+      this.isLoading =false;
       this.toastr.error(error.error.message);
     })
   }

@@ -1,7 +1,10 @@
 <form class="auth-login-box">
   <div class="auth-login">
-    <h1 class="text-login">Login</h1>
-    <div class="input-main-cont">
+    <div class="card flex justify-content-center spinner" *ngIf="isLoading">
+      <p-progressSpinner ariaLabel="loading" />
+    </div>
+    <h1 class="text-login" *ngIf="!isLoading">Login</h1>
+    <div class="input-main-cont" *ngIf="!isLoading">
       <input
         type="text"
         placeholder="Enter your Name"
@@ -18,7 +21,7 @@
       />
       <button class="login-button" (click)="onLogin()">Log in</button>
     </div>
-    <div class="login-para">
+    <div class="login-para" *ngIf="!isLoading">
       <p>
         don't have an account with us?
         <a (click)="navigateToSignup()" class="login-anchor">Sign up</a>
