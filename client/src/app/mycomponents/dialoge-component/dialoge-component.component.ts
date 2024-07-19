@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { TaskEventService } from '../../services/task-event.service';
 
 @Component({
   selector: 'app-dialoge-component',
@@ -22,6 +23,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './dialoge-component.component.css',
 })
 export class DialogeComponentComponent {
+  
   readonly dialogRef = inject(MatDialogRef<DialogeComponentComponent>);
   dialogObj: Dialog;
   taskTitle : string;
@@ -29,7 +31,7 @@ export class DialogeComponentComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any,private http: HttpClient,private taskEventService: TaskEventService) {
     this.taskTitle = data.taskTitle;
     this.dialogObj = new Dialog();
     this.taskId = data.taskId;
@@ -54,6 +56,7 @@ export class DialogeComponentComponent {
       .subscribe(
         (res: any) => {
           console.log(res);
+          this.taskEventService.taskChanged();
           this.dialogRef.close();
         },
         (error) => {
@@ -67,6 +70,7 @@ export class DialogeComponentComponent {
     console.log(this.taskId);
     this.http.put(`http://localhost:4000/task/editTask/${this.taskId}`,this.dialogObj).subscribe((res:any)=>{
       console.log("Task updated successfully");
+      this.taskEventService.taskChanged();
       this.dialogRef.close();
     },(error)=>{
       console.log(error);

@@ -1,3 +1,9 @@
-<div class="navbar-header">
-    <h1 class="navbar-heading">Task Manager</h1>
+<div class="nav-main">
+    <div class="navbar-header">
+        <h1 class="navbar-heading">Task Manager</h1>
+    </div>
+    <div class="card flex justify-content-center ">
+        <p-menu #menu [model]="items" [popup]="true" />
+        <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
+    </div>
 </div>

@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { TaskEventService } from '../../services/task-event.service';
 
 @Component({
   selector: 'app-history',
@@ -10,8 +12,9 @@ import { Component } from '@angular/core';
   styleUrl: './history.component.css'
 })
 export class HistoryComponent {
+  private taskChangedSubscription: Subscription = new Subscription();
   data:any;
-  constructor(private http:HttpClient){}
+  constructor(private http:HttpClient,private taskEventService: TaskEventService){}
 
   ngOnInit(){
     const userId = localStorage.getItem('userData');
@@ -23,6 +26,15 @@ export class HistoryComponent {
     }else{
       console.log(userId,"User data is not present");
     }
+
+    this.taskChangedSubscription = this.taskEventService.taskChanged$.subscribe(() => {
+      const userId = localStorage.getItem('userData');
+      if (userId) {
+        const parsed = JSON.parse(userId);
+        this.fetchHistory(parsed._id);
+      }
+    });
+
   }
 
   fetchHistory(userId:string){
