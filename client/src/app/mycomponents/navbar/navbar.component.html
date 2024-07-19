@@ -6,4 +6,7 @@
         <p-menu #menu [model]="items" [popup]="true" />
         <p-button (onClick)="menu.toggle($event)" icon="pi pi-ellipsis-v"/>
     </div>
+    <div class="logout" *ngIf="userId$">
+        <Button class="logout-btn" (click)="logout()">LogOut</Button>
+    </div>
 </div>
